@@ -1,0 +1,206 @@
+
+<div>
+    <form [formGroup]="bookForm" #f="ngForm" (ngSubmit)="onSubmit(f)" class="book-form" fxLayout="column" fxLayoutGap="20px" >
+
+        
+            <span fxFlex="1 1 10px"></span>
+            <mat-label fxLayoutAlign="center center"  class="header-label">Add Hard Update</mat-label>
+            <span fxFlex="1 1 20px"></span>
+
+            <div fxLayout="row wrap" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Is A Book</mat-label>
+                    <mat-select formControlName="isBook" >
+                        <mat-option value="true">true</mat-option>
+                        <mat-option value="false">false</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="isBook.touched && isBook.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="isBook.value == 'true'" appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Language</mat-label>
+                    <mat-select formControlName="language" >
+                        <mat-option value="Hindi">Hindi</mat-option>
+                        <mat-option value="English">English</mat-option>
+                        <mat-option value="Marathi">Marathi</mat-option>                        
+                        <mat-option value="Hindi/Sanskrit">Hindi/Sanskrit</mat-option>
+                        <mat-option value="English/Sanskrit">English/Sanskrit</mat-option>
+                        <mat-option value="Marathi/Sanskrit">Marathi/Sanskrit</mat-option>
+                    </mat-select> 
+                </mat-form-field>
+                <mat-form-field *ngIf="isBook.value == 'false'" appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Material</mat-label>
+                    <input matInput placeholder="Enter item name" formControlName="material"> 
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Available</mat-label>
+                    <mat-select formControlName="available" >
+                        <mat-option value="true">true</mat-option>
+                        <mat-option value="false">false</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="available.touched && available.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Stock</mat-label>
+                    <input matInput type="number" placeholder="Enter stock" formControlName="stock">
+                    <mat-error *ngIf="stock.touched && stock.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+               
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Enter Item Name</mat-label>
+                    <input matInput placeholder="Enter item name" formControlName="name" (keyup)="nameChanging()">
+                    <mat-icon matSuffix (click)="searchByName()">search</mat-icon>
+                    <mat-error *ngIf="name.touched && name.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="isBook.value == 'true'" appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Pages</mat-label>
+                    <input matInput type="number" placeholder="Number Of Pages" formControlName="pages">
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="number" placeholder="Enter price" formControlName="price">
+                    <mat-error *ngIf="price.touched && price.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Discount</mat-label>
+                    <input matInput type="number" placeholder="Enter price" formControlName="discount">
+                    <mat-error *ngIf="discount.touched && discount.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Delivery Charge</mat-label>
+                    <input matInput type="number" placeholder="Enter delivery charge" formControlName="deliveryCharge">
+                    <mat-error *ngIf="deliveryCharge.touched && deliveryCharge.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Book Id</mat-label>
+                    <input matInput type="number" placeholder="Enter book id" formControlName="bookId">
+                    <mat-error *ngIf="bookId.touched && bookId.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                
+            </div>
+           
+            <mat-form-field appearance="outline" >
+                <mat-label>Enter description</mat-label>
+                <textarea matInput  placeholder="Enter item description" formControlName="description">
+                    </textarea>
+                <mat-error *ngIf="description.touched && description.errors?.required">
+                    This Field is required
+                </mat-error>
+            </mat-form-field>
+            
+            <div fxLayout="row wrap" fxLayoutGap="10px">
+
+                <div *ngFor="let src of imageSrc">
+                    <img *ngIf="src" id="preview" [src]="src" />
+                </div>
+                
+                <label for="file">Cover Picture</label>
+                <div  fxLayout="column" fxLayoutGap="5px">
+                    <input  type="file" multiple="multiple" id="file" hint="Select file" accept="image/x-png,image/gif,image/jpeg" formControlName="picUrl" (change)="handleFileInput($event.target.files)">
+                    <mat-error *ngIf="picUrl.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </div>
+               
+                <button *ngIf="imageSrc.length>0" mat-flat-button class="upload-cover-button" (click)="uploadCoverPic()">Upload Cover</button>
+                
+             </div>   
+            
+             <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                <mat-label>Cover URL</mat-label>
+                <input matInput placeholder="Enter cover URL or choose and upload" formControlName="coverUrl">
+                <mat-error *ngIf="coverUrl.touched && coverUrl.errors?.required">
+                    This Field is required
+                </mat-error>
+            </mat-form-field>
+            
+            <div fxLayout="row wrap" fxLayoutGap="10px">
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="type" >
+                        <mat-option value="purans">Puran</mat-option>
+                        <mat-option value="vedas">Vedas</mat-option>
+                        <mat-option value="geetamrit">Geetamrit</mat-option>
+                        <mat-option value="festive">Festive</mat-option>
+                        <mat-option value="hd">HD</mat-option>
+                        <mat-option value="more">More</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="language.touched && language.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Merchant</mat-label>
+                    <input matInput  placeholder="Enter stock" formControlName="merchant">
+                    <mat-error *ngIf="merchant.touched && merchant.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                    <mat-label>Priority</mat-label>
+                    <mat-select formControlName="priority" >
+                        <mat-option value="0">0</mat-option>
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
+                        <mat-option value="3">3</mat-option>
+                        <mat-option value="4">4</mat-option>
+                        <mat-option value="5">5</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="priority.touched && priority.errors?.required">
+                        This Field is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+           
+            <mat-form-field  fxFlex="1 1 auto">
+                <mat-chip-list #chipListSearch aria-label="Search keywords selection">
+                <mat-chip *ngFor="let key of searchKeywords" [selectable]="bookIdChipSelectable"
+                        [removable]="bookIdChipRemovable" (removed)="removeSearchKey(key)">
+                    {{key}}
+                    <mat-icon matChipRemove *ngIf="bookIdChipRemovable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Enter Search Keywords"
+                        [matChipInputFor]="chipListSearch"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addChipOnBlur"
+                        (matChipInputTokenEnd)="addSearchKey($event)">
+                </mat-chip-list>
+            </mat-form-field>
+            
+            <mat-form-field  fxFlex="1 1 auto">
+                <mat-chip-list #chipListItemPics aria-label="All Pictures selection">
+                <mat-chip *ngFor="let key of allPictures" [selectable]="bookIdChipSelectable"
+                        [removable]="bookIdChipRemovable" (removed)="removeItemPic(key)">
+                    {{key}}
+                    <mat-icon matChipRemove *ngIf="bookIdChipRemovable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Enter All Pic URLs"
+                        [matChipInputFor]="chipListItemPics"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addChipOnBlur"
+                        (matChipInputTokenEnd)="addItemPic($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        <button mat-flat-button class="add-button" fxFlex="1 1 auto" type="submit" [disabled]="!f.valid" >Update Item</button>
+      
+           
+    </form>
+</div>

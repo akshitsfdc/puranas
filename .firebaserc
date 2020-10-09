@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "all-puranas-in-hindi": {
+      "hosting": {
+        "all-puranas-hindi-admin": [
+          "all-puranas-in-hindi"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div id="parent" fxLayout="row">
+    <div id=leftContainer  fxFlex="1 1 auto" fxLayoutAlign="center center">
+        <form [formGroup]="loginForm" #f="ngForm" (ngSubmit)="onSubmit(f)" class="login-form" fxLayout="column" fxLayoutGap="20px">
+            <span fxFlex="1 1 10px"></span>
+            <mat-label fxLayoutAlign="center center"  class="header-label">Login</mat-label>
+            <span fxFlex="1 1 20px"></span>
+            <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" placeholder="Enter email address" formControlName="emailAddress">
+            <!-- <mat-error *ngIf="numberOfPatients.touched && numberOfPatients.errors?.required">
+                You must provide patient limit
+            </mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter your password" formControlName="password">
+            <!-- <mat-error *ngIf="numberOfPatients.touched && numberOfPatients.errors?.required">
+                You must provide patient limit
+            </mat-error> -->
+            </mat-form-field>
+            <button mat-flat-button class="login-button" fxFlex="1 1 auto" type="submit" >Login</button>
+        </form>
+    </div>
+    <div id="rightContainer" fxFlex="1 1 60%">
+
+    </div>
+</div>
