@@ -26,6 +26,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { SoftBookUpdateComponent } from './soft-book-update/soft-book-update.component';
 import { HardItemAddComponent } from './hard-item-add/hard-item-add.component';
 import { HardItemUpdateComponent } from './hard-item-update/hard-item-update.component';
+import { AddUpdateBannersComponent } from './add-update-banners/add-update-banners.component';
+import { AddUpdateDisplayCollectionComponent } from './add-update-display-collection/add-update-display-collection.component';
 
 
 
@@ -39,7 +41,9 @@ import { HardItemUpdateComponent } from './hard-item-update/hard-item-update.com
     SoftBookUpdateComponent,
     LoadingDialogComponent,
     HardItemAddComponent,
-    HardItemUpdateComponent
+    HardItemUpdateComponent,
+    AddUpdateBannersComponent,
+    AddUpdateDisplayCollectionComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,12 @@ import { HardItemUpdateComponent } from './hard-item-update/hard-item-update.com
           },
           {
             path: 'harditemupdate', component: HardItemUpdateComponent
+          },
+          {
+            path: 'bannerupdate', component: AddUpdateBannersComponent
+          },
+          {
+            path: 'displayupdate', component: AddUpdateDisplayCollectionComponent
           }
         ]
      }

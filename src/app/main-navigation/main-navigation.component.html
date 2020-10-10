@@ -9,6 +9,8 @@
       <a mat-list-item (click)="openSoftBookUpdate()">Soft Books Update</a>
       <a mat-list-item (click)="openHardItemAdd()">Hard Items Add</a>
       <a mat-list-item (click)="openHardItemUpdate()">Hard Items Update</a>
+      <a mat-list-item (click)="openBannerAddUpdate()">Banners Add Update</a>
+      <a mat-list-item (click)="openDisplayAddUpdate()">Display Add Update</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,7 +23,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>all-puranas-hindi-admin</span>
+      <span>All Puranas Hindi - Admin Portal</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

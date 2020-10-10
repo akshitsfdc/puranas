@@ -1,0 +1,83 @@
+<div class="parent" fxLayout="column" fxLayoutAlign="center center">
+
+    <div fxLayout="row"  fxLayoutGap="20px" class="add-category-button">
+        
+        <mat-form-field appearance="outline" >
+            <mat-label>Position - Total {{bookDisplayCollection.length}}</mat-label>
+            <input matInput #index type="number" placeholder="Enter title here" value="0" > 
+            <div matSuffix fxLayout="row" fxLayoutGap="5px">
+                <mat-icon matSuffix (click)="removeCategory(index.value)" [ngStyle]="{'color':'#DB4437'}">remove_circle</mat-icon>     
+                <mat-icon matSuffix (click)="addCategory(index.value)" [ngStyle]="{'color':'#0F9D58'}">add_circle</mat-icon>
+            </div>  
+                                              
+        </mat-form-field>  
+       
+    </div>
+    <button mat-flat-button class="update-object" (click)="updateDisplay()" [disabled]="!updateButtonShouldEnable">Update Server</button>
+    <mat-list role="list" class="outer-list" fxFlex="1 1 100%">
+        <mat-list-item role="listitem" *ngFor="let bookDisplay of bookDisplayCollection" class="top-list-item-class" >
+
+            <mat-card class="example-card" fxFlex="1 1 auto">
+                <mat-card-header class="top-card-header" fxLayoutGap="10px">
+                    
+                  <!-- <mat-card-title>{{bookDisplay.headerTitle}}</mat-card-title> -->
+                  <mat-form-field appearance="outline" fxFlex="1 1 70%">
+                    <mat-label>Title</mat-label>
+                    <input matInput  placeholder="Enter title here" [(ngModel)]="bookDisplay.headerTitle">                                       
+                </mat-form-field>  
+                <mat-form-field appearance="outline" fxFlex="1 1 30%">
+                    <mat-label>Position - Total {{bookDisplay.bookDisplaySliders.length}}</mat-label>
+                    <input matInput #position type="number" placeholder="Enter title here" value="0" >  
+                    <div matSuffix fxLayout="row" fxLayoutGap="5px">
+                        <mat-icon matSuffix (click)="removeInCategory(bookDisplay, index.value)" [ngStyle]="{'color':'#DB4437'}">remove_circle</mat-icon>  
+                        <mat-icon matSuffix (click)="addInCategory(bookDisplay, position.value)" [ngStyle]="{'color':'#0F9D58'}">add_circle</mat-icon>         
+                    </div>                            
+                </mat-form-field>  
+               
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-list role="list"  *ngFor="let display of bookDisplay.bookDisplaySliders" class="inner-list">
+                        <mat-list-item role="listitem" class="inner-list-item-class" >                            
+                            <mat-card >  
+                                <mat-card-header>
+                                    <img mat-card-avatar [src]="display.picUrl" >
+                                  </mat-card-header>                             
+                                <mat-card-content fxLayout="row" fxLayoutGap="10px" class="inner-card-content" >
+                                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                                        <mat-label>Book Id</mat-label>
+                                        <input matInput  placeholder="Enter book Id" [(ngModel)]="display.bookId">                                       
+                                    </mat-form-field>  
+                                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput  placeholder="Enter Name" [(ngModel)]="display.name">                                       
+                                    </mat-form-field>    
+                                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                                        <mat-label>Cover Url</mat-label>
+                                        <input matInput  placeholder="Enter cover URL" [(ngModel)]="display.picUrl">                                       
+                                    </mat-form-field>  
+                                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                                        <mat-label>Type</mat-label>
+                                        <mat-select [(value)]="display.type" >
+                                            <mat-option value="purans">Puran</mat-option>
+                                            <mat-option value="vedas">Vedas</mat-option>
+                                            <mat-option value="geetamrit">Geetamrit</mat-option>
+                                            <mat-option value="festive">Festive</mat-option>
+                                            <mat-option value="hd">HD</mat-option>
+                                            <mat-option value="more">More</mat-option>
+                                        </mat-select>
+                                        
+                                    </mat-form-field>                                                                 
+                                </mat-card-content>
+                                
+                              </mat-card>                        
+                        </mat-list-item>
+                       
+                    </mat-list>
+                </mat-card-content>
+              </mat-card>   
+           
+        </mat-list-item>
+    </mat-list>
+    
+    
+</div>

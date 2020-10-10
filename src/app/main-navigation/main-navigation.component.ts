@@ -31,5 +31,10 @@ export class MainNavigationComponent {
   openHardItemUpdate(){
     this.router.navigate(['harditemupdate'], { relativeTo: this.route });
   }
-  
+  openBannerAddUpdate(){
+    this.router.navigate(['bannerupdate'], { relativeTo: this.route });
+  }
+  openDisplayAddUpdate(){
+    this.router.navigate(['displayupdate'], { relativeTo: this.route });
+  }
 }

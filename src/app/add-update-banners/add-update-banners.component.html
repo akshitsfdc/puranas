@@ -1,0 +1,57 @@
+<div class="parent" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2px">
+
+    <span fxFlex="1 1 20px"></span>
+    <mat-form-field appearance="outline" >
+        <mat-label>Position - Total {{bannerCollection.length}}</mat-label>
+        <input matInput #index type="number" placeholder="Enter position" value="0" > 
+        <div matSuffix fxLayout="row" fxLayoutGap="5px">
+            <mat-icon matSuffix (click)="removeBanner(index.value)" [ngStyle]="{'color':'#DB4437'}">remove_circle</mat-icon>     
+            <mat-icon matSuffix (click)="addBanner(index.value)" [ngStyle]="{'color':'#0F9D58'}">add_circle</mat-icon>
+        </div>  
+                                          
+    </mat-form-field> 
+    <button mat-flat-button class="update-object" (click)="updateDisplay()" [disabled]="!updateButtonShouldEnable">Update Server</button>
+    <span fxFlex="1 1 20px"></span>
+    <mat-list role="list" class="outer-list" fxFlex="1 1 100%">
+        <mat-list-item role="listitem" *ngFor="let banner of bannerCollection" class="top-list-item-class" >
+
+            <mat-card class="example-card" fxFlex="1 1 auto">
+                <img mat-card-image [src]="banner.imageUrl">
+                <mat-card-content fxLayout="row" fxLayoutGap="10px" class="inner-card-content" >
+                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                        <mat-label>Cover Url</mat-label>
+                        <input matInput  placeholder="Enter book Id" [(ngModel)]="banner.imageUrl">                                       
+                    </mat-form-field>  
+                            
+                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                        <mat-label>Is External URL Banner</mat-label>
+                        <mat-select [(value)]="banner.externalLink" >
+                            <mat-option [value]="true">true</mat-option>
+                            <mat-option [value]="false">false</mat-option>
+                        </mat-select>                        
+                    </mat-form-field>  
+                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                        <mat-label>External Url</mat-label>
+                        <input matInput  placeholder="Enter cover URL" [(ngModel)]="banner.externalUrl">                                       
+                    </mat-form-field> 
+                    <mat-form-field appearance="outline" fxFlex="1 1 auto">
+                        <mat-label>Move To</mat-label>
+                        <mat-select [(value)]="banner.moveTo" >
+                            <mat-option value="purans">Puran</mat-option>
+                            <mat-option value="vedas">Vedas</mat-option>
+                            <mat-option value="geetamrit">Geetamrit</mat-option>
+                            <mat-option value="festive">Festive</mat-option>
+                            <mat-option value="hd">HD</mat-option>
+                            <mat-option value="more">More</mat-option>
+                        </mat-select>
+                        
+                    </mat-form-field>                                                                 
+                    
+                </mat-card-content>
+              </mat-card>   
+           
+        </mat-list-item>
+    </mat-list>
+    
+    <span fxFlex="1 1 20px"></span>
+</div>
