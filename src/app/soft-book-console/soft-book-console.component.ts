@@ -242,13 +242,20 @@ export class SoftBookConsoleComponent implements OnInit {
     
   }
   private saveBook(book:SoftBook):void{
+
+    console.log("Id : "+book.getBookId()+" Name : "+book.getName()+" Type : "+book.getType());
+    console.log("Cover Url : "+book.getPicUrl());
+
+    this.showLoading();
     this.fireStore.collection('digital_books').doc(book.getBookId())
     .set(Object.assign({}, book))
     .then(()=>{
+      this.hideLoading();
       this.openSnackBar("Success...! Book saved.", "Done");
       this.resetControls();
     })
     .catch((error)=>{
+      this.hideLoading();
       this.openSnackBar("Error! Could not save the book.", "Try Again");
     })
   }

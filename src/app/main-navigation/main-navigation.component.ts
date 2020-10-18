@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main-navigation',
@@ -17,7 +18,9 @@ export class MainNavigationComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private route: ActivatedRoute) {}
+  constructor(private firebaseAuth: AuthService, private breakpointObserver: BreakpointObserver, private router: Router, private route: ActivatedRoute) {
+    this.openSoftBookConsole();
+  }
 
   openSoftBookConsole(){
     this.router.navigate(['softbookadd'], { relativeTo: this.route });
@@ -36,5 +39,21 @@ export class MainNavigationComponent {
   }
   openDisplayAddUpdate(){
     this.router.navigate(['displayupdate'], { relativeTo: this.route });
+  }
+  openSearchAnalytics(){
+    this.router.navigate(['searchanalytics'], { relativeTo: this.route });
+  }
+  openSearchAnalyticsPhysical(){
+    this.router.navigate(['searchanalyticsphysical'], { relativeTo: this.route });
+  }
+  logout(){
+    this.firebaseAuth.signOut()
+    .then(() => {
+      this.router.navigate([''], { relativeTo: this.route });
+    })
+    .catch(() => {
+      console.log("Could not log you out try again later!");
+    });
+    
   }
 }

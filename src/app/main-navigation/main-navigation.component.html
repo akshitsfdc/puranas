@@ -1,30 +1,33 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+<div fxLayout="column" class="parent" > 
+  <mat-toolbar color="primary" fxFlex="1 1 76px">
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>All Puranas Hindi - Admin Portal</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container" fxFlex="1 1 auto">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="false" [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item (click)="openSoftBookConsole()">Soft Books Add</a>
-      <a mat-list-item (click)="openSoftBookUpdate()">Soft Books Update</a>
-      <a mat-list-item (click)="openHardItemAdd()">Hard Items Add</a>
-      <a mat-list-item (click)="openHardItemUpdate()">Hard Items Update</a>
-      <a mat-list-item (click)="openBannerAddUpdate()">Banners Add Update</a>
-      <a mat-list-item (click)="openDisplayAddUpdate()">Display Add Update</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>All Puranas Hindi - Admin Portal</span>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item (click)="openSoftBookConsole()">Soft Books Add</a>
+        <a mat-list-item (click)="openSoftBookUpdate()">Soft Books Update</a>
+        <a mat-list-item (click)="openHardItemAdd()">Hard Items Add</a>
+        <a mat-list-item (click)="openHardItemUpdate()">Hard Items Update</a>
+        <a mat-list-item (click)="openBannerAddUpdate()">Banners Add Update</a>
+        <a mat-list-item (click)="openDisplayAddUpdate()">Display Add Update</a>
+        <a mat-list-item (click)="openSearchAnalytics()">Search Analytics Digital</a>
+        <a mat-list-item (click)="openSearchAnalyticsPhysical()">Search Analytics Physical</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

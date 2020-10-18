@@ -265,6 +265,8 @@ export class HardItemAddComponent implements OnInit {
   }
   private saveItem(book:HardItem):void{
 
+    console.log("Id : "+book.getBookId()+" Name : "+book.getName()+" Type : "+book.getType());
+    console.log("Cover Url : "+book.getPicUrl());
     this.showLoading();
     this.fireStore.collection('physical_books').doc(book.getBookId())
     .set(Object.assign({}, book))

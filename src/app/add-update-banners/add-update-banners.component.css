@@ -1,6 +1,5 @@
 .parent{
-    overflow: hidden;
-   
+   margin-bottom: 15px;
 }
 .outer-list{
     width: fit-content;

@@ -104,7 +104,7 @@ export class AddUpdateDisplayCollectionComponent implements OnInit {
     bookDisplayCollection.setBookDisplayCollection(this.bookDisplayCollection);
 
     this.showLoading();
-    this.fireStore.collection('test').doc('meta')
+    this.fireStore.collection('app_info').doc('meta_data')
     .set(JSON.parse(JSON.stringify(Object.assign({}, bookDisplayCollection))), {merge:true})
     .then(()=>{
       this.hideLoading();

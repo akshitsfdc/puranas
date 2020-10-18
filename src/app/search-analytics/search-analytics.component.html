@@ -1,0 +1,16 @@
+
+<div class="parent" >
+    <mat-list role="list" class="outer-list" fxLayout="row wrap"  >
+        <mat-list-item role="listitem" *ngFor="let data of searchAnalyticsDataSet" class="top-list-item-class" >
+            <mat-card class="example-card" >
+                <mat-card-content class="content-card"  fxLayout="column" fxLayoutGap="10px"  >
+                    <mat-label>{{data.name || "Not available"}}</mat-label> 
+                    <mat-label>{{data.email}}</mat-label>
+                    <mat-label class="search-keyword-class">{{data.searchedKeyword}}</mat-label>
+                </mat-card-content>
+    
+              </mat-card>             
+              
+        </mat-list-item>    
+    </mat-list>
+</div>

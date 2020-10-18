@@ -1,8 +1,12 @@
+.parent{
+    height: 100%;
+    width: 100%;
+}
 .book-form{
     margin: 20px 50px 20px 50px;
 }
 .header-label{
-    font-size: 30px;
+    font-size: 25px;
     font-family: roboto-bold;
 }
 .add-button{

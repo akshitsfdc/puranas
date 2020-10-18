@@ -82,7 +82,7 @@ export class AddUpdateBannersComponent implements OnInit {
     collection.setBannerUrls(this.bannerCollection);
 
     this.showLoading();
-    this.fireStore.collection('test').doc('meta')
+    this.fireStore.collection('app_info').doc('meta_data')
     .set(JSON.parse(JSON.stringify(Object.assign({}, collection))), {merge:true})
     .then(()=>{
       this.hideLoading();
@@ -94,6 +94,47 @@ export class AddUpdateBannersComponent implements OnInit {
     })
   }
 
+  handleFileInput(files: FileList, banner:Banner) {
+
+
+      if (files && files[0]) {
+        let file = files.item(0);
+        // const reader = new FileReader();
+        // reader.onload = e => this.imageSrc = reader.result;
+        // reader.readAsDataURL(this.fileToUpload);
+        this.uploadCoverPic(file, banner);
+    }
+
+  }
+
+  uploadCoverPic(file: File, banner:Banner):void{
+
+
+    if(!file){
+      this.openSnackBar("No file selected!", "Ok");
+      return;
+    }
+
+    this.showLoading();
+
+    const filePath = 'homeSliderImages/'+ file.name;
+
+    const fileRef = this.angularFireStorage.ref(filePath);
+    const task = fileRef.put(file);
+
+    task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url=>{
+            if(url){
+                banner.setImageUrl(url);
+                this.hideLoading();
+                this.openSnackBar("Banner Picture has been uploaded to the server", "Done");
+            }
+         })
+        } )
+     )
+    .subscribe();
+  }
   private showLoading():void{
     this.loadingIndicator = this.matDialog.open(LoadingDialogComponent, {disableClose: true});
   }

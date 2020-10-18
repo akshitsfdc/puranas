@@ -10,7 +10,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -28,7 +28,8 @@ import {MatListModule} from '@angular/material/list';
     MatChipsModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatListModule
+    MatListModule,
+    MatPaginatorModule
   ]
 
 })

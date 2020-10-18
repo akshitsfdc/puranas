@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.firebaseAuth.signOut();
-    // this.firebaseAuth.getUser()
-    // .then(user => {
-    //   if(user){
-    //     this.navigateToHome();
-    //   }
-    // });
+    
+    this.firebaseAuth.getUser()
+    .then(user => {
+      if(user){
+        this.navigateToHome();
+      }
+    });
 
     this.loginForm = new FormGroup({
       emailAddress: new FormControl('', Validators.required),

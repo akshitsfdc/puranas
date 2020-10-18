@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { LoadingDialogComponent } from './loading-dialog/loading-dialog.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -28,8 +29,8 @@ import { HardItemAddComponent } from './hard-item-add/hard-item-add.component';
 import { HardItemUpdateComponent } from './hard-item-update/hard-item-update.component';
 import { AddUpdateBannersComponent } from './add-update-banners/add-update-banners.component';
 import { AddUpdateDisplayCollectionComponent } from './add-update-display-collection/add-update-display-collection.component';
-
-
+import { SearchAnalyticsComponent } from './search-analytics/search-analytics.component';
+import { SearchAnalyticsPhysicalComponent } from './search-analytics-physical/search-analytics-physical.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { AddUpdateDisplayCollectionComponent } from './add-update-display-collec
     HardItemAddComponent,
     HardItemUpdateComponent,
     AddUpdateBannersComponent,
-    AddUpdateDisplayCollectionComponent
+    AddUpdateDisplayCollectionComponent,
+    SearchAnalyticsComponent,
+    SearchAnalyticsPhysicalComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import { AddUpdateDisplayCollectionComponent } from './add-update-display-collec
     RouterModule.forChild([
       { path: '', component: LoginComponent },
 
-      { path: 'home', component: HomeComponent ,
+      { path: 'home', component: HomeComponent , canActivate : [AuthGuardService], 
 
         children: [
           {
@@ -78,6 +81,12 @@ import { AddUpdateDisplayCollectionComponent } from './add-update-display-collec
           },
           {
             path: 'displayupdate', component: AddUpdateDisplayCollectionComponent
+          },
+          {
+            path: 'searchanalytics', component: SearchAnalyticsComponent
+          },
+          {
+            path: 'searchanalyticsphysical', component: SearchAnalyticsPhysicalComponent
           }
         ]
      }
@@ -90,7 +99,7 @@ import { AddUpdateDisplayCollectionComponent } from './add-update-display-collec
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 

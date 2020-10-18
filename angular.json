@@ -9,10 +9,27 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+
           "options": {
+            "allowedCommonJsDependencies": [
+                "lodash",
+                "firebase",
+                "@angular/common/locales/fr",
+                "lodash/dropRight",
+                "@angular/fire/firestore",
+                "@firebase/auth",
+                "@firebase/app",
+                "firebase/app",
+                "@firebase/database",
+                "@firebase/firestore",
+                "@firebase/functions",
+                "@firebase/performance",
+                "@firebase/remote-config"
+            ],
             "outputPath": "dist/all-puranas-hindi-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
